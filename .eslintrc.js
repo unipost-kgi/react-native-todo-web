@@ -5,11 +5,12 @@ module.exports = {
     jest: true,
   },
   extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:import/typescript',
     'plugin:import/recommended',
-    'airbnb',
+    'plugin:import/typescript',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,7 +20,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'import'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'import'],
   settings: {
     'import/resolver': {
       node: {
@@ -27,6 +28,7 @@ module.exports = {
       },
     },
   },
+  indent: ['error', 2],
   rules: {
     'react/jsx-filename-extension': [
       'warn',
@@ -34,22 +36,19 @@ module.exports = {
         extensions: ['.tsx'],
       },
     ],
+    'linebreak-style': 0,
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    'no-confusing-arrow': 'off',
+    'implicit-arrow-linebreak': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
       {
         ts: 'never',
         tsx: 'never',
-      },
-    ],
-    'react/function-component-definition': [
-      2,
-      {
-        namedComponents: 'arrow-function',
       },
     ],
     'react/jsx-one-expression-per-line': 'off',
@@ -67,15 +66,41 @@ module.exports = {
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
-          { pattern: 'react', group: 'external', position: 'before' },
-          { pattern: 'react-dom', group: 'external', position: 'before' },
-          { pattern: 'react-native', group: 'external', position: 'before' },
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react-dom',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react-native',
+            group: 'external',
+            position: 'before',
+          },
         ],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
-        'newlines-between': 'always',
+        'newlines-between': 'always-and-inside-groups',
+      },
+    ],
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: 'always',
+        ObjectPattern: {
+          multiline: true,
+        },
+        ImportDeclaration: 'never',
+        ExportDeclaration: {
+          multiline: true,
+          minProperties: 3,
+        },
       },
     ],
   },
