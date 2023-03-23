@@ -18,7 +18,7 @@ export default function AddTodo({ onInsert }: Props) {
 
   const button = (
     <View style={styles.buttonStyle}>
-      <Image source={addWhiteImage} />
+      <Image source={addWhiteImage} style={styles.addWhiteImage} />
     </View>
   );
 
@@ -62,5 +62,9 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  addWhiteImage: {
+    width: 32,
+    height: 32,
   },
 });

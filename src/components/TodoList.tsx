@@ -35,6 +35,7 @@ export default function TodoList({ todos, onToggle, onRemove }: Props) {
 
 const styles = StyleSheet.create({
   list: {
+    height: '100%',
     flex: 1,
   },
   separator: {

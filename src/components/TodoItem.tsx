@@ -1,9 +1,9 @@
 import React from 'react';
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import checkImage from '../assets/icons/check_white/check_white.png';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import xIcon from '../assets/icons/x_icon/x_icon.png';
 
 type Props = {
   id: number;
@@ -14,20 +14,20 @@ type Props = {
 };
 
 export default function TodoItem({ id, text, done, onToggle, onRemove }: Props) {
-  const remove = () => {
-    Alert.alert(
-      '삭제',
-      '정말로 삭제하시겠습니까?',
-      [
-        { text: '취소', onPress: () => {}, style: 'cancel' },
-        { text: '삭제', onPress: () => onRemove(id), style: 'destructive' },
-      ],
-      {
-        cancelable: true,
-        onDismiss: () => {},
-      },
-    );
-  };
+  // const remove = () => {
+  //   Alert.alert(
+  //     '삭제',
+  //     '정말로 삭제하시겠습니까?',
+  //     [
+  //       { text: '취소', onPress: () => {}, style: 'cancel' },
+  //       { text: '삭제', onPress: () => onRemove(id), style: 'destructive' },
+  //     ],
+  //     {
+  //       cancelable: true,
+  //       onDismiss: () => {},
+  //     },
+  //   );
+  // };
 
   return (
     <View style={styles.item}>
@@ -38,8 +38,8 @@ export default function TodoItem({ id, text, done, onToggle, onRemove }: Props) 
       </TouchableOpacity>
       <Text style={[styles.text, done && styles.lineThrough]}>{text}</Text>
       {done ? (
-        <TouchableOpacity activeOpacity={0.5} onPress={remove}>
-          <Icon name="delete" size={36} color="red" />
+        <TouchableOpacity activeOpacity={0.5} onPress={() => onRemove(id)}>
+          <Image source={xIcon} style={styles.Icon} />
         </TouchableOpacity>
       ) : (
         <View style={styles.removePlaceholder} />
@@ -84,5 +84,9 @@ const styles = StyleSheet.create({
   removePlaceholder: {
     width: 36,
     height: 36,
+  },
+  Icon: {
+    width: 30,
+    height: 30,
   },
 });

@@ -14,6 +14,7 @@ export default function Empty() {
 
 const styles = StyleSheet.create({
   block: {
+    height: '100%',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

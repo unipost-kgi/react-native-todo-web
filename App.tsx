@@ -11,7 +11,7 @@ import TodoList from './src/components/TodoList';
 
 const today = new Date();
 
-export default function App() {
+export default function AppOrigin() {
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -46,35 +46,33 @@ export default function App() {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView edges={['bottom']} style={styles.block}>
-        <KeyboardAvoidingView
-          behavior={Platform.select({
-            ios: 'padding',
-            android: undefined,
-          })}
-          style={styles.avoid}
-        >
-          <DateHead date={today} />
-          {todos.length === 0 ? (
-            <Empty />
-          ) : (
-            <TodoList todos={todos} onToggle={onToggle} onRemove={onRemove} />
-          )}
+    <KeyboardAvoidingView
+      behavior={Platform.select({
+        ios: 'padding',
+        android: undefined,
+      })}
+      style={styles.avoid}
+    >
+      <DateHead date={today} />
+      {todos.length === 0 ? (
+        <Empty />
+      ) : (
+        <TodoList todos={todos} onToggle={onToggle} onRemove={onRemove} />
+      )}
 
-          <AddTodo onInsert={onInsert} />
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <AddTodo onInsert={onInsert} />
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   block: {
+    height: '100%',
     flex: 1,
     backgroundColor: 'white',
   },
   avoid: {
+    height: '100%',
     flex: 1,
   },
 });
